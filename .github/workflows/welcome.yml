@@ -1,0 +1,30 @@
+# .github/workflows/welcome.yml
+# 欢迎新贡献者工作流
+
+name: Welcome First-Timers
+
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome new contributor
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 你好，@${{ github.actor }}！感谢你第一次向 vibe-coding-cn 提交 Issue！
+            我们会尽快查看。欢迎你加入我们的社区！
+
+          pr-message: |
+            👋 你好，@${{ github.actor }}！感谢你第一次向 vibe-coding-cn 提交 Pull Request！
+            我们将仔细评审你的贡献。感谢你让这个项目变得更好！
